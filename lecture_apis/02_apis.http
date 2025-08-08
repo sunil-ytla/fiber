@@ -1,0 +1,65 @@
+GET http://127.0.0.1:3000
+
+### API Root
+GET http://127.0.0.1:3000/api
+
+
+### API v1
+GET http://127.0.0.1:3000/api/v1
+
+
+### API v1 List
+GET http://127.0.0.1:3000/api/v1/list
+
+
+### API v1 User
+GET http://127.0.0.1:3000/api/v1/user
+
+
+### API v2
+GET http://127.0.0.1:3000/api/v2
+
+
+### API v2 List
+GET http://127.0.0.1:3000/api/v2/list
+
+
+### API v2 User
+GET http://127.0.0.1:3000/api/v2/user
+
+
+########################
+### Route Examples ####
+##########################
+
+### Route Example get all
+GET http://127.0.0.1:3000/route_example
+
+### Route Example create
+POST http://127.0.0.1:3000/route_example
+
+### Route Example get by id
+GET http://127.0.0.1:3000/route_example/2
+
+### Route Example update
+PUT http://127.0.0.1:3000/route_example/2
+
+### Route Example delete
+DELETE http://127.0.0.1:3000/route_example/2
+
+### Route Example Patch
+PATCH http://127.0.0.1:3000/route_example/2
+
+
+################################
+### Shutdown the server ####
+#################################
+
+GET http://127.0.0.1:3000/shutdown
+
+
+################################
+### Test ####
+#################################
+
+GET http://127.0.0.1:3000/test-token

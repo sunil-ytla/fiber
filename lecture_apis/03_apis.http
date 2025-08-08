@@ -1,0 +1,41 @@
+### CTX
+GET http://127.0.0.1:3000/l3/macseller/pro
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:47:29 GMT
+content-type: text/plain; charset=utf-8
+content-length: 2
+connection: close
+###
+GET http://127.0.0.1:3000/l3/download
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:47:38 GMT
+content-type: text/plain; charset=utf-8
+content-length: 26
+content-disposition: attachment; filename="samplefile.txt"
+accept-ranges: bytes
+last-modified: Fri, 08 Aug 2025 02:58:43 GMT
+connection: close
+###
+POST http://127.0.0.1:3000/l3/bodyparser
+Content-Type: application/json
+
+{
+    "name": "honey sing",
+    "pass": "passed"
+}
+###
+POST http://127.0.0.1:3000/l3/bodyparser1
+Content-Type: application/json
+
+{
+    "name": "honey sing",
+    "pass": "passed"
+}
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:48:03 GMT
+content-type: application/json
+content-length: 37
+connection: close

@@ -1,0 +1,26 @@
+GET http://127.0.0.1:3000
+
+### Get Value
+GET http://127.0.0.1:3000/getvalue/somevalue
+
+### Hello World
+GET http://127.0.0.1:3000/getvalue/hello
+
+###
+GET http://127.0.0.1:3000/getvalue/2
+
+### Get Name
+GET http://127.0.0.1:3000/getname/John
+
+### Get Name with Default
+GET http://127.0.0.1:3000/getname
+
+### wildcard
+GET http://127.0.0.1:3000/getall/anything/here
+
+### wildcard with query
+GET http://127.0.0.1:3000/getall/anything/here/fdsfdfs-fsdfsdfs
+
+### Static File
+# we are retrieving a static html file
+GET http://127.0.0.1:3000/static

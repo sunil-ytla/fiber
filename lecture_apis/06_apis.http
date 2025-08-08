@@ -1,0 +1,3 @@
+curl --location 'http://127.0.0.1:3000/l6/login' \
+--form 'username="john"' \
+--form 'password="john123"'

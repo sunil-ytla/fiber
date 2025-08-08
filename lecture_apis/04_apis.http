@@ -1,0 +1,34 @@
+### cookies
+GET http://127.0.0.1:3000/l4/cookie
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:45:44 GMT
+content-type: text/plain; charset=utf-8
+content-length: 2
+set-cookie: john=doe; expires=Sat, 09 Aug 2025 15:45:45 GMT; path=/; SameSite=Lax, app_theme=dark; path=/; SameSite=Lax
+connection: close
+###
+GET http://127.0.0.1:3000/l4/cookie/checkout
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:45:35 GMT
+content-type: text/plain; charset=utf-8
+content-length: 2
+connection: close
+###
+GET http://127.0.0.1:3000/l4/cookie/logout
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:45:33 GMT
+content-type: text/plain; charset=utf-8
+content-length: 2
+set-cookie: app_theme=; expires=Tue, 10 Nov 2009 23:00:00 GMT, token=; expires=Tue, 10 Nov 2009 23:00:00 GMT, session=; expires=Tue, 10 Nov 2009 23:00:00 GMT, track_id=; expires=Tue, 10 Nov 2009 23:00:00 GMT, version=; expires=Tue, 10 Nov 2009 23:00:00 GMT
+connection: close
+###
+GET http://127.0.0.1:3000/l4/cookie/parse
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:45:32 GMT
+content-type: text/plain; charset=utf-8
+content-length: 2
+connection: close

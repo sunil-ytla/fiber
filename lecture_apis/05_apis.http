@@ -1,0 +1,48 @@
+### params
+GET http://127.0.0.1:3000/l5/params/adasda
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:44:15 GMT
+content-type: text/plain; charset=utf-8
+content-length: 6
+connection: close
+###
+GET http://127.0.0.1:3000/l5/params1/adasda/10
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:44:10 GMT
+content-type: application/json
+content-length: 25
+connection: close
+###
+GET http://127.0.0.1:3000/l5/paramsparser/sungod/999/god
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:44:12 GMT
+content-type: application/json
+content-length: 39
+connection: close
+###
+GET http://127.0.0.1:3000/l5/queries/?name=allen&want_pizza=false&id=100
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:44:20 GMT
+content-type: application/json
+content-length: 48
+connection: close
+###
+GET http://127.0.0.1:3000/l5/query/?name=barry_allen&want_pizza=true&id=110
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:38:15 GMT
+content-type: application/json
+content-length: 49
+connection: close
+###
+GET http://127.0.0.1:3000/l5/queryparser/?name=barry_allen&pass=passed&products=110&products=123
+
+HTTP/1.1 200  - OK
+date: Fri, 08 Aug 2025 15:38:17 GMT
+content-type: application/json
+content-length: 63
+connection: close
