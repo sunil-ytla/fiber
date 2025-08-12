@@ -346,7 +346,7 @@ func InitApp() *fiber.App {
 	})
 
 	// Lecture 6
-	// Form Value, this is tested in postman
+	// Form Value, 
 	app.Post("/l6/login", func(c *fiber.Ctx) error {
 		// Get first value from form field "name":
 		username := c.FormValue("username")
@@ -365,7 +365,102 @@ func InitApp() *fiber.App {
 		})
 	})
 
+	// file upload
+	app.Post("/l6/upload", func(c *fiber.Ctx) error {
+		file, _ := c.FormFile("document")
 
+		return c.SaveFile(file, "/Users/sunilvytla/projects/Golang/fiber/01-fiber/files/uploaded.txt")
+	})
+
+
+	app.Post("/l6/uploads", func(c *fiber.Ctx) error {
+		// Parse the multipart form:
+		if form, err := c.MultipartForm(); err == nil {
+				// => *multipart.Form
+
+				// Get all files from "documents" key:
+				files := form.File["documents"]
+				// => []*multipart.FileHeader
+
+				// Loop through files:
+				for _, file := range files {
+					// name := fmt.Sprintf(file.Filename, file.Size, time.Now().String())
+					// log.Println(name)
+					// fmt.Println(file.Filename, file.Size, file.Header["Content-Type"][0])
+					// => "tutorial.pdf" 360641 "application/pdf"
+					filePath := fmt.Sprintf("/Users/sunilvytla/projects/Golang/fiber/01-fiber/files/%s", file.Filename)
+					// Save the files to disk:
+					if err := c.SaveFile(file, filePath); err != nil {
+						return err
+					}
+				}
+				return err
+		}
+		return c.SendStatus(fiber.StatusOK)
+	})
+
+	type keyType struct{}
+	var userKey keyType
+	// This is called before the below endpoints are called.
+	app.Use(func(c *fiber.Ctx) error {
+		log.Println("app use func")
+		c.Locals(userKey, "admin")
+		return c.Next()
+	})
+
+	app.Get("/admin", func(c *fiber.Ctx) error {
+		user, ok := c.Locals(userKey).(string) // Retrieves the data stored under the key and performs a type assertion
+		if ok && user == "admin" {
+			return c.Status(fiber.StatusOK).SendString("Welcome, admin!")
+		}
+		return c.SendStatus(fiber.StatusForbidden)
+	})
+
+	app.Get("/admins", func(c *fiber.Ctx) error {
+		user, ok := c.Locals(userKey).(string) // Retrieves the data stored under the key and performs a type assertion
+		if ok && user == "admin" {
+			return c.Status(fiber.StatusOK).SendString("Welcome, admins!")
+		}
+		return c.SendStatus(fiber.StatusForbidden)
+	})
+
+	app.Get("/l7/getname/:name", func(c *fiber.Ctx) error {
+		name := []byte(c.Params("name"))
+		return c.Send(name)
+	})
+
+	app.Get("/l7/sendfile", func(c *fiber.Ctx) error {
+		return c.SendFile("./files/uploaded.txt")
+	})
+
+	app.Get("/l7/sendStatus", func(c *fiber.Ctx) error {
+		c.SendString("hello world")
+		return c.SendStatus(fiber.StatusUnsupportedMediaType)
+	})
+
+	// SendString (this automatically sends status code 200 by default if we dont send any status code back)
+	app.Get("/l7/sendString", func(c *fiber.Ctx) error {
+		return c.SendString("hello world")
+	})
+
+	app.Get("/l7/sendStringclone", func(c *fiber.Ctx) error {
+		c.SendString("hello world")
+		return c.SendStatus(fiber.StatusOK)
+	})
+
+	// we can chain Status with different things like below.
+	app.Get("/l7/statuschaining1", func(c *fiber.Ctx) error {
+	return c.Status(fiber.StatusBadRequest).SendString("Bad Request")
+	})
+
+	app.Get("/l7/statuschaining2", func(c *fiber.Ctx) error {
+	return c.Status(fiber.StatusNotFound).SendFile("./files/uploaded.txt")
+	})
+
+	app.Get("/l7/statuschaining3", func(c *fiber.Ctx) error {
+		c.Status(fiber.StatusOK)
+		return nil
+	})
 
 	return app
 }

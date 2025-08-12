@@ -1,3 +1,90 @@
-curl --location 'http://127.0.0.1:3000/l6/login' \
---form 'username="john"' \
---form 'password="john123"'
+POST http://127.0.0.1:3000/l6/login
+Content-Type: application/x-www-form-urlencoded
+
+username=john&password=john123
+
+
+HTTP/1.1 200  - OK
+date: Sat, 09 Aug 2025 12:34:09 GMT
+content-type: application/json
+content-length: 22
+connection: close
+###
+POST {{host}}/l6/login
+Content-Type: application/x-www-form-urlencoded
+
+username=john&password=wrongpass
+
+HTTP/1.1 401  - Unauthorized
+date: Sat, 09 Aug 2025 05:33:06 GMT
+content-type: application/json
+content-length: 37
+connection: close
+###
+POST {{host}}/l6/upload
+Content-Type: multipart/form-data; boundary=--WebKitFormBoundary7MA4YWxkTrZu0gW
+
+--WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="my_document"; filename="my_document.txt"
+Content-Type: text/plain
+
+< ./my_document.txt
+--WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+HTTP/1.1 400  - Bad Request
+date: Sat, 09 Aug 2025 05:52:17 GMT
+content-type: text/plain; charset=utf-8
+content-length: 62
+connection: close
+###
+POST {{host}}/l6/upload
+Content-Type: multipart/form-data; boundary=WebKitFormBoundary7MA4YWxkTrZu0gW
+
+--WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="my_document.txt"
+Content-Type: text/plain
+
+< ./my_document.txt
+--WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+HTTP/1.1 200  - OK
+date: Sat, 09 Aug 2025 05:56:40 GMT
+content-length: 0
+connection: close
+###
+POST {{host}}/l6/uploads
+Content-Type: multipart/form-data; boundary=WebKitFormBoundary7MA4YWxkTrZu0gW
+
+--WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="documents"; filename="my_document1.txt"
+Content-Type: text/plain
+
+< ./my_document1.txt
+--WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="documents"; filename="my_document2.txt"
+Content-Type: text/plain
+
+< ./my_document2.txt
+--WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+HTTP/1.1 200  - OK
+date: Sat, 09 Aug 2025 07:14:01 GMT
+content-length: 0
+connection: close
+###
+GET {{host}}/admin
+
+HTTP/1.1 200  - OK
+date: Sat, 09 Aug 2025 19:01:35 GMT
+content-type: text/plain; charset=utf-8
+content-length: 15
+connection: close
+###
+GET {{host}}/admins
+
+HTTP/1.1 200  - OK
+date: Sat, 09 Aug 2025 19:01:33 GMT
+content-type: text/plain; charset=utf-8
+content-length: 16
+connection: close

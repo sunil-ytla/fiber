@@ -28,6 +28,30 @@ function 02_go_test {
     go test -v
 }
 
+function proj_go_mod_init {
+    echo "Initializing Go module for project..."
+    cd "${THIS_DIR}/APIPROJECT"
+    go mod init github.com/sunil-ytla/APIPROJECT
+}
+
+function proj_go_mod_tidy {
+    echo "Tidying Go module..."
+    cd "${THIS_DIR}/APIPROJECT"
+    go mod tidy
+}
+
+function proj_run {
+    echo "Running Go application..."
+    cd "${THIS_DIR}/APIPROJECT"
+    go run main.go
+}
+
+function proj_generate_sqlc {
+    echo "Generating SQLC files..."
+    cd "${THIS_DIR}/APIPROJECT"
+    sqlc generate
+}
+
 
 
 function help {

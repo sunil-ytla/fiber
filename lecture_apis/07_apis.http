@@ -1,0 +1,74 @@
+# Send
+GET {{host}}/l7/getname/login
+
+HTTP/1.1 200  - OK
+date: Sun, 10 Aug 2025 10:13:28 GMT
+content-type: text/plain; charset=utf-8
+content-length: 5
+connection: close
+###
+# Send File
+GET {{host}}/l7/sendfile
+
+HTTP/1.1 200  - OK
+date: Sun, 10 Aug 2025 10:13:35 GMT
+content-type: text/plain; charset=utf-8
+content-length: 17
+accept-ranges: bytes
+last-modified: Sat, 09 Aug 2025 05:56:40 GMT
+connection: close
+###
+# Send Status
+GET {{host}}/l7/sendstatus
+
+HTTP/1.1 415  - Unsupported Media Type
+date: Sun, 10 Aug 2025 10:18:57 GMT
+content-type: text/plain; charset=utf-8
+content-length: 11
+connection: close
+/*
+[Status codes](https://docs.gofiber.io/api/constants) 
+fiber uses
+*/
+###
+# Send String (this automatically sends status code 200 by default if we dont send any status code back)
+GET {{host}}/l7/sendString
+
+HTTP/1.1 200  - OK
+date: Mon, 11 Aug 2025 07:59:03 GMT
+content-type: text/plain; charset=utf-8
+content-length: 11
+connection: close
+###
+GET {{host}}/l7/sendStringclone
+
+HTTP/1.1 200  - OK
+date: Mon, 11 Aug 2025 07:59:04 GMT
+content-type: text/plain; charset=utf-8
+content-length: 11
+connection: close
+###
+GET {{host}}/l7/statuschaining1
+
+HTTP/1.1 400  - Bad Request
+date: Mon, 11 Aug 2025 08:04:14 GMT
+content-type: text/plain; charset=utf-8
+content-length: 11
+connection: close
+###
+GET {{host}}/l7/statuschaining2
+
+HTTP/1.1 404  - Not Found
+date: Mon, 11 Aug 2025 08:04:20 GMT
+content-type: text/plain; charset=utf-8
+content-length: 17
+accept-ranges: bytes
+last-modified: Sat, 09 Aug 2025 05:56:40 GMT
+connection: close
+###
+GET {{host}}/l7/statuschaining3
+
+HTTP/1.1 200  - OK
+date: Mon, 11 Aug 2025 08:05:57 GMT
+content-length: 0
+connection: close
